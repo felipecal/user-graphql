@@ -28,6 +28,15 @@
     tslib "^2.3.0"
     zen-observable-ts "^1.2.5"
 
+"@apollo/federation@^0.36.1":
+  version "0.36.1"
+  resolved "https://registry.yarnpkg.com/@apollo/federation/-/federation-0.36.1.tgz#25afa0598c701763928de13f6fbbe49dfabdb24e"
+  integrity sha512-SAvW7ZRUEtmAdK+UWRXZxo/wRNVbDDyYbeYJooKAtvc8B4Mly+2PusqBQ+4RuHhg5dSqrv5d6RXJeY9MBiraVA==
+  dependencies:
+    "@apollo/subgraph" "^0.4.1"
+    apollo-server-types "^3.0.2"
+    lodash.xorby "^4.7.0"
+
 "@apollo/protobufjs@1.2.4":
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/@apollo/protobufjs/-/protobufjs-1.2.4.tgz#d913e7627210ec5efd758ceeb751c776c68ba133"
@@ -46,6 +55,11 @@
     "@types/long" "^4.0.0"
     "@types/node" "^10.1.0"
     long "^4.0.0"
+
+"@apollo/subgraph@^0.4.1":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@apollo/subgraph/-/subgraph-0.4.2.tgz#f8516f1d5e5fbd57189727497ed9f805fa5017c8"
+  integrity sha512-sIGzqfUryW6tS5RPWp1awtO+5CehjPV6xbDrWS4I2Hsj8rug8Y9oiMpcnNk8GaQ1TF3UEf99ZL16mNa4J++IIQ==
 
 "@apollo/utils.dropunuseddefinitions@^1.1.0":
   version "1.1.0"
@@ -1561,7 +1575,7 @@ apollo-server-plugin-base@^3.6.2:
   dependencies:
     apollo-server-types "^3.6.2"
 
-apollo-server-types@^3.6.2:
+apollo-server-types@^3.0.2, apollo-server-types@^3.6.2:
   version "3.6.2"
   resolved "https://registry.yarnpkg.com/apollo-server-types/-/apollo-server-types-3.6.2.tgz#34bb0c335fcce3057cbdf72b3b63da182de6fc84"
   integrity sha512-9Z54S7NB+qW1VV+kmiqwU2Q6jxWfX89HlSGCGOo3zrkrperh85LrzABgN9S92+qyeHYd72noMDg2aI039sF3dg==
@@ -2727,6 +2741,11 @@ lodash.sortby@^4.7.0:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/lodash.sortby/-/lodash.sortby-4.7.0.tgz#edd14c824e2cc9c1e0b0a1b42bb5210516a42438"
   integrity sha512-HDWXG8isMntAyRF5vZ7xKuEvOhT4AhlRt/3czTSjvGUxjYCBVRQY48ViDHyfYz9VIoBkW4TMGQNapx+l3RUwdA==
+
+lodash.xorby@^4.7.0:
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/lodash.xorby/-/lodash.xorby-4.7.0.tgz#9c19a6f9f063a6eb53dd03c1b6871799801463d7"
+  integrity sha512-gYiD6nvuQy0AEkMoUju+t4f4Rn18fjsLB/7x7YZFqtFT9kmegRLrj/uGEQVyVDy7otTmSrIMXNOk2wwuLcfHCQ==
 
 lodash@^4.17.21:
   version "4.17.21"
