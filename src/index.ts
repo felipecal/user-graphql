@@ -1,13 +1,19 @@
 import { ApolloServer } from 'apollo-server';
+import { buildSubgraphSchema } from '@apollo/federation';
+import { typeDefs, resolvers } from './graphql/mergeSchemas';
+import { ApolloServerPluginInlineTraceDisabled } from 'apollo-server-core';
 // import database from './db/models';
 
-import { typeDefs, resolvers } from './graphql/mergeSchemas';
+let schema = buildSubgraphSchema([{ typeDefs, resolvers }]);
+// let schema = apollo(typeDefs, resolvers)
 
 const server = new ApolloServer({
-    typeDefs, resolvers, context: ({ req }) => ({
-        req, 
+    schema, context: ({ req }) => ({
+        req,
         // database
-    })
+    }), plugins: [
+        ApolloServerPluginInlineTraceDisabled()
+    ]
 })
 
 const app = process.env.PORT || 4003;
