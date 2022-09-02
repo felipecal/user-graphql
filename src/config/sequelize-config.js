@@ -16,7 +16,6 @@ module.exports = {
     password,
     database,
     dialect,
-    storage,
     define: {
         timestamps: true,
         underscored: true
