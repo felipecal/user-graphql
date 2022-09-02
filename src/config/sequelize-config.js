@@ -1,12 +1,10 @@
-import { config as dotEnv } from 'dotenv';
+require('dotenv').config()
 
-dotEnv();
-
-const host = process.env.DB_HOST;
+const host = process.env.DB_HOST || localhost;
 const port = parseInt(process.env.DB_PORT|| 5432);
-const username = process.env.DB_USERNAME;
-const password = process.env.DB_PASSWORD; 
-const database = process.env.DB_DATABASE;
+const username = process.env.DB_USERNAME || 'postgres';
+const password = process.env.DB_PASSWORD || 1234; 
+const database = process.env.DB_DATABASE || 'user_ts';
 const dialect = 'postgres';
 
 module.exports = {
