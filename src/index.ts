@@ -2,7 +2,9 @@ import { ApolloServer } from 'apollo-server';
 import { buildSubgraphSchema } from '@apollo/federation';
 import { typeDefs, resolvers } from './graphql/mergeSchemas';
 import { ApolloServerPluginInlineTraceDisabled } from 'apollo-server-core';
-// import database from './db/models';
+import { config as dotEnv } from 'dotenv';
+
+dotEnv();
 
 let schema = buildSubgraphSchema([{ typeDefs, resolvers }]);
 // let schema = apollo(typeDefs, resolvers)
