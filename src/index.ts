@@ -7,12 +7,10 @@ import { config as dotEnv } from 'dotenv';
 dotEnv();
 
 let schema = buildSubgraphSchema([{ typeDefs, resolvers }]);
-// let schema = apollo(typeDefs, resolvers)
 
 const server = new ApolloServer({
     schema, context: ({ req }) => ({
-        req,
-        // database
+        req
     }), plugins: [
         ApolloServerPluginInlineTraceDisabled()
     ]
