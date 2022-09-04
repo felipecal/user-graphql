@@ -1,7 +1,9 @@
+import UserModel  from '../../../db/models/User'
+
 export default {
     Query: {
         getRoomById: async (parent, { id }, { database }, info) => {
-            return await database.Users.findByPk(id)
+            return await UserModel.findByPk(id);
         },
         getAllRooms: async (parent, _, { database }, info) => {
             return await database.Users.findAll()
