@@ -3,20 +3,18 @@ import UserModel from '../../../db/models/User'
 export default {
     Query: {
         getUserById: async (_parent, { id }, _context, _info) => {
-
             const user = await UserModel.findByPk(id);
-            console.log(user);
             return user;
         },
         getAllUsers: async (_parent, { active }, _context, _info) => {
-            if (active === true) {
+            if ( active === true ) {
                 return await UserModel.findAll({
                     where:{
                         active: active
                     }
                 })
             }
-            if ( active === false){
+            if ( active === false ){
                 return await UserModel.findAll({
                     paranoid: false,
                     where:{
