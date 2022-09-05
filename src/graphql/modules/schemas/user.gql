@@ -1,25 +1,39 @@
+scalar Date
+
 type User {
     id: ID!
     first_name: String!
     last_name: String!
-    age: INTEGER!
-    email: String
+    age: Int!
+    email: String!
+    active: Boolean
+    created_at: Date
+    updated_at: Date
+    removed_at: Date
 }
 
 input UserInput {
     first_name: String!
     last_name: String!
-    age: INTEGER!
+    age: Int!
+    email: String!
+    active: Boolean
+}
+
+input UserUpdateInput {
+    first_name: String
+    last_name: String,
+    age: Int,
     email: String
 }
 
 type Query {
     getUserById(id: ID!): User!
-    getAllUsers: [User!]!
+    getAllUsers(active: Boolean!): [User!]!
 }
 
 type Mutation{
-    createUser(input: UserInput!): User!
-    updateUser(id: ID!, input: UserInput!): User!
-    deleteUser(id: ID!): Boolean
+    createUser(Active: Boolean!): User!
+    updateUser(id: ID!, input: UserUpdateInput): User!
+    deleteUser(id: ID!): Boolean!
 }

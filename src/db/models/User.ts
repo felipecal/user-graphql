@@ -1,4 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
+import { DeletedAt } from 'sequelize-typescript';
 import { sequelize } from '../../config/config';
 
 class UserModel extends Model {
@@ -28,22 +29,30 @@ UserModel.init(
             type: DataTypes.STRING,
             allowNull: false
         },
-        createdAt: {
+        active: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true
+        },
+        created_at: {
             type: DataTypes.DATE,
             defaultValue: new Date()
         },
-        updatedAt: {
+        updated_at: {
             type: DataTypes.DATE,
             defaultValue: new Date()
         },
-        removedAt: DataTypes.DATE
+        removed_at: {
+            type: DataTypes.DATE,
+        }
     },
     {
-        timestamps: false,
+        timestamps: true,
         freezeTableName: true,
         tableName: 'user',
         sequelize,
-        underscored: true
+        underscored: true,
+        paranoid: true,
+        deletedAt: 'removed_at'
     }
 );
 

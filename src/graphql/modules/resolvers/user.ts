@@ -1,41 +1,73 @@
-import UserModel  from '../../../db/models/User'
+import UserModel from '../../../db/models/User'
 
 export default {
     Query: {
-        getRoomById: async (parent, { id }, { database }, info) => {
-            return await UserModel.findByPk(id);
+        getUserById: async (_parent, { id }, _context, _info) => {
+
+            const user = await UserModel.findByPk(id);
+            console.log(user);
+            return user;
         },
-        getAllRooms: async (parent, _, { database }, info) => {
-            return await database.Users.findAll()
-        }
+        getAllUsers: async (_parent, { active }, _context, _info) => {
+            if (active === true) {
+                return await UserModel.findAll({
+                    where:{
+                        active: active
+                    }
+                })
+            }
+            if ( active === false){
+                return await UserModel.findAll({
+                    paranoid: false,
+                    where:{
+                        active: false
+                    }
+                })
+            }
+            else{
+                throw new Error('Active must be a Boolean!')
+
+            }
+        },
     },
     Mutation: {
-        createRoom: async (parent, { input }, { database }, info) => {
-            return await database.Users.create(
+        createUser: async (_parent, { input }, _context, _info) => {
+            const user = await UserModel.create(
                 {
-                    name: input.name,
-                    size: input.size
+                    first_name: input.first_name,
+                    last_name: input.last_name,
+                    age: input.age,
+                    email: input.email,
+                    active: input.active,
+                    created_at: new Date()
                 }
             )
+            return user;
+
         },
-        updateRoom: async (parent, { id, input }, { database }, info) => {
-            const user = await database.Users.findByPk(id)
+        updateUser: async (_parent, { id, input }, _context, _info) => {
+            const user = await UserModel.findByPk(id)
             if (!user) {
                 throw new Error('User not found')
             } else {
-                const updateUser = await user.update(input)
+                const updateUser = user.set(input)
+                await updateUser.save();
                 return updateUser;
             }
         },
-        deleteUser: async (parent, { id }, { database }, info) => {
-            const user = await database.Users.findByPk(id);
+        deleteUser: async (_parent, { id }, _context, _info) => {
+            const user = await UserModel.findByPk(id);
             if (!user) {
                 throw new Error('User not found')
             } else {
-                const deleteUser = await user.update({
-                    removed_at: new Date()
+                await user.update({
+                    where: {
+                        id: id
+                    },
+                    active: false
                 })
-                return !!deleteUser;
+                await user.destroy(id);
+                return true;
             }
         }
     }
