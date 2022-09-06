@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
-import { DeletedAt } from 'sequelize-typescript';
 import { sequelize } from '../../config/config';
+import PostModel from './Post';
 
 class UserModel extends Model {
 }
@@ -55,5 +55,7 @@ UserModel.init(
         deletedAt: 'removed_at'
     }
 );
+
+
 
 export default UserModel;
