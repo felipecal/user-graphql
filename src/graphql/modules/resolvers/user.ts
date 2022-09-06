@@ -1,4 +1,5 @@
 import UserModel from '../../../db/models/User'
+import PostModel from '../../../db/models/Post';
 
 export default {
     Query: {
@@ -7,25 +8,15 @@ export default {
             return user;
         },
         getAllUsers: async (_parent, { active }, _context, _info) => {
-            if ( active === true ) {
-                return await UserModel.findAll({
-                    where:{
-                        active: active
-                    }
-                })
-            }
-            if ( active === false ){
-                return await UserModel.findAll({
-                    paranoid: false,
-                    where:{
-                        active: false
-                    }
-                })
-            }
-            else{
-                throw new Error('Active must be a Boolean!')
-
-            }
+            const ListUser = await UserModel.findAll({
+                where:{
+                    active: !!active
+                },
+                paranoid: false,
+                include: [{ model: PostModel, as: 'post' }]
+            })
+            console.log(ListUser);
+            return ListUser;
         },
     },
     Mutation: {

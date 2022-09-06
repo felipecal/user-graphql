@@ -10,6 +10,7 @@ type User {
     created_at: Date
     updated_at: Date
     removed_at: Date
+    post: [Post]
 }
 
 input UserInput {
@@ -33,7 +34,7 @@ type Query {
 }
 
 type Mutation{
-    createUser(Active: Boolean!): User!
+    createUser(input: UserInput!): User!
     updateUser(id: ID!, input: UserUpdateInput): User!
     deleteUser(id: ID!): Boolean!
 }
