@@ -6,6 +6,7 @@
   "author": "Felipe <fcalldas@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "test": "yarn sequelize db:drop && yarn sequelize db:create && yarn sequelize db:migrate && yarn sequelize db:seed:all",
     "dev": "yarn ts-node-dev --respawn --transpile-only --watch src/**/*.gql src/index.ts",
     "build:babel": "babel src --extensions .ts --copy-files --out-dir distBabel",
     "build:tsc": "tsc -p .",
