@@ -13,7 +13,7 @@ export default {
                     active: active
                 },
                 paranoid: false,
-                include: [{ model: UserModel, as: 'user'}]
+                // include: [{ model: UserModel, as: 'user'}]
             })
 
             return ListPost;

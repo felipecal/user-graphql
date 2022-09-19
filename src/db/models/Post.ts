@@ -61,16 +61,16 @@ PostModel.init(
     },
 );
 
-PostModel.belongsTo(UserModel, {
-    foreignKey: 'user_id',
-    targetKey: 'id',
-    as: 'user'
-});
-
 UserModel.hasMany(PostModel, {
     foreignKey: 'user_id',
     sourceKey: 'id',
     as: 'post'
 });
+
+// PostModel.belongsTo(UserModel, {
+//     foreignKey: 'post_id',
+//     targetKey: 'id',
+//     as: 'user'
+// });
 
 export default PostModel;
