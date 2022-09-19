@@ -15,7 +15,6 @@ export default {
                 paranoid: false,
                 include: [{ model: PostModel, as: 'post' }]
             })
-            console.log(ListUser);
             return ListUser;
         },
     },
