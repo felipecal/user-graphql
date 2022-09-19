@@ -5,7 +5,8 @@ const port = parseInt(process.env.DB_PORT|| 5432);
 const username = process.env.DB_USERNAME || 'postgres';
 const password = process.env.DB_PASSWORD || '1234'; 
 const database = process.env.DB_DATABASE || 'user_ts';
-const dialect = 'postgres';
+const env = process.env.NODE_ENV;
+const dialect = env === 'test' ? 'sqlite' : 'postgres';
 
 module.exports = {
     host,
@@ -13,6 +14,7 @@ module.exports = {
     username,
     password,
     database,
+    storage: './tests/database.sqlite',
     dialect,
     define: {
         timestamps: true,
