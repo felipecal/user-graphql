@@ -13,6 +13,14 @@ UserModel.init(
             allowNull: false,
             primaryKey: true
         },
+        // post_id: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false,
+        //     references: {
+        //         model: PostModel,
+        //         key: 'id'
+        //     }
+        // },
         first_name: {
             type: DataTypes.STRING,
             allowNull: false,

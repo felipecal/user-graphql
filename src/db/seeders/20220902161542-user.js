@@ -9,7 +9,8 @@ module.exports = {
       age: 20,
       email: 'fcalldas@gmail.com',
       active: true,
-      created_at: new Date()
+      created_at: new Date(),
+      // post_id: 1
     },
   {
     first_name: 'Pedro',
@@ -17,7 +18,8 @@ module.exports = {
     age: 20,
     email: 'pedroliveira@gmail.com',
     active: true,
-    created_at: new Date()
+    created_at: new Date(),
+    // post_id: 2
   }], {});
   },
 
