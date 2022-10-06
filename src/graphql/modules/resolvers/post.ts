@@ -10,7 +10,7 @@ export default {
         getAllPosts: async (_parent, { active }, _context, _info) => {
             const ListPost = await PostModel.findAll({
                 where: {
-                    active: active
+                    active: !!active
                 },
                 paranoid: false,
                 // include: [{ model: UserModel, as: 'user'}]
