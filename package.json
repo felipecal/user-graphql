@@ -1,8 +1,8 @@
 {
-  "name": "user_ts",
+  "name": "user-graphql",
   "version": "1.0.0",
   "main": "index.ts",
-  "repository": "https://github.com/felipecal/Users-TS.git",
+  "repository": "https://github.com/felipecal/user-graphql.git",
   "author": "Felipe <fcalldas@gmail.com>",
   "license": "MIT",
   "scripts": {
