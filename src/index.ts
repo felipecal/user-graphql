@@ -1,11 +1,9 @@
+import 'dotenv/config'
 import { ApolloServer } from 'apollo-server-express';
 import { buildSubgraphSchema } from '@apollo/federation';
 import { typeDefs, resolvers } from './graphql/mergeSchemas';
 import { ApolloServerPluginInlineTraceDisabled } from 'apollo-server-core';
 import express from 'express';
-import { config as dotEnv } from 'dotenv';
-
-dotEnv();
 
 const app = express();
 
@@ -23,8 +21,8 @@ const server = new ApolloServer({
 
 const startServer = async () => {
     await server.start()
-    server.applyMiddleware({app});
-    
+    server.applyMiddleware({ app });
+
 }
 startServer().then(() => {
     app.listen(process.env.PORT || 3000, () => console.log(`🔥 Server ready at ${process.env.PORT}`));
