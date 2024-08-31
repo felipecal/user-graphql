@@ -7,23 +7,36 @@ module.exports = {
       first_name: 'Felipe',
       last_name: 'Caldas',
       age: 20,
-      email: 'fcalldas@gmail.com',
+      email: 'felipe_example@gmail.com',
       active: true,
       created_at: new Date(),
-      // post_id: 1
     },
-  {
-    first_name: 'Pedro',
-    last_name: 'Oliveira',
-    age: 20,
-    email: 'pedroliveira@gmail.com',
-    active: true,
-    created_at: new Date(),
-    // post_id: 2
-  }], {});
+    {
+      first_name: 'John',
+      last_name: 'Doe',
+      age: 20,
+      email: 'john_example@gmail.com',
+      active: true,
+      created_at: new Date(),
+    }], {});
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('user', null, {});
-  }
+    await queryInterface.bulkDelete('user', [{
+      first_name: 'Felipe',
+      last_name: 'Caldas',
+      age: 20,
+      email: 'felipe_example@gmail.com',
+      active: true,
+      created_at: new Date(),
+    },
+    {
+      first_name: 'John',
+      last_name: 'Doe',
+      age: 20,
+      email: 'john_example@gmail.com',
+      active: true,
+      created_at: new Date(),
+    }], {});
+  },
 };

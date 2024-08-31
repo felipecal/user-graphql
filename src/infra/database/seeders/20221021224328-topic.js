@@ -6,19 +6,28 @@ module.exports = {
       name: 'Clean Code',
       theme: 'Programmin Language',
       totalCount: 11,
-      description: "Testando ",
-      // topic_id: 1
+      description: "Test ",
     },
     {
       name: 'Dirty Code',
       theme: 'Programmin Language',
       totalCount: 15,
-      description: "Testando Dirty",
-      // topic_id: 2
+      description: "Test Dirty",
     }], {});
   },
 
   async down(queryInterface, Sequelize) {
-      await queryInterface.bulkDelete('topic', null, {});
+    await queryInterface.bulkDelete('topic', [{
+      name: 'Clean Code',
+      theme: 'Programmin Language',
+      totalCount: 11,
+      description: "Test ",
+    },
+    {
+      name: 'Dirty Code',
+      theme: 'Programmin Language',
+      totalCount: 15,
+      description: "Test Dirty",
+    }], {});
   }
 };
