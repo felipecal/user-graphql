@@ -21,9 +21,9 @@
     "baseUrl": ".",
     "paths": {
       "@config/*": ["src/config/*"],
-      "@db/*": ["src/db/*"],
+      "@db/*": ["src/infra/db/*"],
       "@graphql/*": ["graphql/modules/*"]
     }
   },
-  "include": ["src//*", "tests//*"]
+  "include": ["src//*", "tests//*", "src/app/graphql", "src/infra/db"]
 }

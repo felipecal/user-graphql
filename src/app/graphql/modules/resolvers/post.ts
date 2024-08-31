@@ -1,5 +1,5 @@
-import PostModel from '../../../db/models/Post';
-import UserModel from '../../../db/models/User';
+import PostModel from '../../../../infra/database/models/Post';
+import UserModel from '../../../../infra/database/models/User';
 
 export default {
     Query: {

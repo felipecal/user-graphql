@@ -1,5 +1,5 @@
-import TopicModel from '../../../db/models/Topic';
-import UserModel from '../../../db/models/User';
+import TopicModel from '../../../../infra/database/models/Topic';
+import UserModel from '../../../../infra/database/models/User';
 
 export default {
     Query: {

@@ -1,7 +1,7 @@
 import 'dotenv/config'
 import { ApolloServer } from 'apollo-server-express';
 import { buildSubgraphSchema } from '@apollo/federation';
-import { typeDefs, resolvers } from './graphql/mergeSchemas';
+import { typeDefs, resolvers } from './app/graphql/mergeSchemas';
 import { ApolloServerPluginInlineTraceDisabled } from 'apollo-server-core';
 import express from 'express';
 
