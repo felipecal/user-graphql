@@ -1,0 +1,45 @@
+version: "3.9"
+services:
+  web:
+    image: user-graphql
+    container_name: user-graphql
+    networks:
+      - user-graphql
+    ports:
+      - 3001:${PORT}
+    environment:
+      - PORT=${PORT}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_DIALECT=${DB_DIALECT}
+      - NODE_ENV=${NODE_ENV}
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres-user-graphql
+    ports:
+      - 5432:${DB_PORT}
+    networks:
+      - user-graphql
+    environment:
+      - POSTGRES_DB=${DB_DATABASE}
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      # - POSTGRES_PASSWORD=true
+    # volumes:
+    #   - postgres:/var/lib/postgresql/data
+    # - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+networks:
+  user-graphql:
+    driver: bridge
+
+volumes:
+  postgres:
+    driver: local
+
