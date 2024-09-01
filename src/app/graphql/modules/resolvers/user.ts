@@ -1,20 +1,21 @@
-import UserModel from '../../../../infra/database/models/User';
-import PostModel from '../../../../infra/database/models/Post';
-
+import UserModel from '../../../../infra/database/models/Users';
+import PostModel from '../../../../infra/database/models/Posts';
 
 export default {
     Query: {
         getUserById: async (_parent, { id }, _context, _info) => {
-            const user = await UserModel.findByPk(id);
+            const user = await UserModel.findByPk(id, {
+                include: [{ model: PostModel, as: 'user_posts' }]
+            });
             return user;
         },
         getAllUsers: async (_parent, { active }, _context, _info) => {
             const ListUser = await UserModel.findAll({
-                where:{
+                where: {
                     active: !!active
                 },
                 paranoid: false,
-                include: [{ model: PostModel, as: 'post' }]
+                include: [{ model: PostModel, as: 'user_posts' }]
             })
             return ListUser;
         },
@@ -23,9 +24,9 @@ export default {
         createUser: async (_parent, { input }, _context, _info) => {
             const user = await UserModel.create(
                 {
-                    first_name: input.first_name,
-                    last_name: input.last_name,
-                    age: input.age,
+                    full_name: input.full_name,
+                    nick_name: input.nick_name,
+                    password: input.password,
                     email: input.email,
                     active: input.active,
                     created_at: new Date()
@@ -35,12 +36,22 @@ export default {
 
         },
         updateUser: async (_parent, { id, input }, _context, _info) => {
+            console.log("id que recebi", id);
+            console.log("input que recebi", input);
+            
             const user = await UserModel.findByPk(id)
             if (!user) {
                 throw new Error('User not found')
             } else {
-                const updateUser = user.set(input)
-                await updateUser.save();
+                const updateUser = await user.update(
+                    {
+                        full_name: input.full_name,
+                        nick_name: input.nick_name,
+                        password: input.password,
+                        email: input.email,
+                        active: input.active,
+                    }
+                )
                 return updateUser;
             }
         },
@@ -49,12 +60,6 @@ export default {
             if (!user) {
                 throw new Error('User not found')
             } else {
-                await user.update({
-                    where: {
-                        id: id
-                    },
-                    active: false
-                })
                 await user.destroy(id);
                 return true;
             }
