@@ -1,6 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from './index';
-import  UserModel  from './User';
+import UserModel from './Users';
 
 class PostModel extends Model {
 }
@@ -9,31 +9,26 @@ class PostModel extends Model {
 PostModel.init(
     {
         id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
+            type: DataTypes.STRING,
+            defaultValue: DataTypes.UUIDV4,
             allowNull: false,
             primaryKey: true
         },
-        title: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
         user_id: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
             references: {
                 model: UserModel,
                 key: 'id'
             }
         },
-        description: {
+        title: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        active: {
-            type: DataTypes.BOOLEAN,
+        content: {
+            type: DataTypes.TEXT,
             allowNull: false,
-            defaultValue: true
         },
         created_at: {
             type: DataTypes.DATE,
@@ -53,7 +48,7 @@ PostModel.init(
     {
         timestamps: true,
         freezeTableName: true,
-        tableName: 'post',
+        tableName: 'posts',
         sequelize,
         underscored: true,
         paranoid: true,
@@ -64,13 +59,12 @@ PostModel.init(
 UserModel.hasMany(PostModel, {
     foreignKey: 'user_id',
     sourceKey: 'id',
-    as: 'post'
+    as: 'user_posts'
 });
 
-// PostModel.belongsTo(UserModel, {
-//     foreignKey: 'post_id',
-//     targetKey: 'id',
-//     as: 'user'
-// });
+PostModel.belongsTo(UserModel, {
+    foreignKey: 'user_id',
+    as: 'user'
+});
 
 export default PostModel;

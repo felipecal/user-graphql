@@ -1,7 +1,6 @@
 // import { sequelize } from './../../config/config';
 import { Sequelize, DataTypes, Model } from 'sequelize';
 import { sequelize } from './index';
-import PostModel from './Post';
 
 class UserModel extends Model {
 }
@@ -9,29 +8,21 @@ class UserModel extends Model {
 UserModel.init(
     {
         id: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
+            type: DataTypes.STRING,
+            defaultValue: DataTypes.UUIDV4,
             allowNull: false,
             primaryKey: true
         },
-        // post_id: {
-        //     type: DataTypes.INTEGER,
-        //     allowNull: false,
-        //     references: {
-        //         model: PostModel,
-        //         key: 'id'
-        //     }
-        // },
-        first_name: {
+        full_name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        last_name: {
+        nick_name: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
-        age: {
-            type: DataTypes.INTEGER,
+        password: {
+            type: DataTypes.STRING,
             allowNull: false
         },
         email: {
@@ -57,7 +48,7 @@ UserModel.init(
     {
         timestamps: true,
         freezeTableName: true,
-        tableName: 'user',
+        tableName: 'users',
         sequelize,
         underscored: true,
         paranoid: true,
