@@ -11,7 +11,8 @@
     "dev": "yarn ts-node-dev --respawn --transpile-only --watch src/**/*.gql src/index.ts",
     "build:babel": "babel src --extensions .ts --copy-files --out-dir distBabel",
     "build:tsc": "tsc -p .",
-    "start": "concurrently \"yarn dev\" \"yarn watch\""
+    "start": "concurrently \"yarn dev\" \"yarn watch\"",
+    "format": "npx prettier . --write"
   },
   "dependencies": {
     "@apollo/federation": "^0.36.1",
@@ -26,6 +27,7 @@
     "graphql-tools": "^8.3.4",
     "path": "^0.12.7",
     "pg": "^8.8.0",
+    "prettier": "^3.3.3",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.37.3",
     "sequelize-typescript": "^2.1.3"
