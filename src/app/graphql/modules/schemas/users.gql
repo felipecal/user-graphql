@@ -1,0 +1,41 @@
+scalar Date
+
+type User {
+    id: String!
+    full_name: String!
+    nick_name: String
+    password: String!
+    email: String!
+    active: Boolean
+    created_at: Date
+    updated_at: Date
+    removed_at: Date
+    user_posts: [Post]
+}
+
+input UserInput {
+    full_name: String!
+    nick_name: String
+    password: String!
+    email: String!
+    active: Boolean
+}
+
+input UserUpdateInput {
+    full_name: String
+    nick_name: String
+    passowrd: String
+    email: String
+    activate: Boolean
+}
+
+type Query {
+    getUserById(id: String!): User!
+    getAllUsers(active: Boolean!): [User!]!
+}
+
+type Mutation{
+    createUser(input: UserInput!): User!
+    updateUser(id: String!, input: UserUpdateInput): User!
+    deleteUser(id: String!): Boolean!
+}
