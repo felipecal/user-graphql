@@ -1,0 +1,23 @@
+type Likes {
+    id: String!
+    post_id: String!
+    user_id: String!
+    created_at: Date
+    updated_at: Date
+    removed_at: Date
+}
+
+input LikesInput {
+    post_id: String!
+    user_id: String!
+}
+
+type Query {
+    getLikeById(id: String!): Likes
+    getAllLikes: [Likes!]!
+}
+
+type Mutation {
+    createLike(input: LikesInput!): Likes!
+    deleteLike(id: String!): Boolean!
+}
