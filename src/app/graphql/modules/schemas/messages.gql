@@ -1,32 +1,32 @@
 type Message {
-    id: String!
-    post_id: String!
-    user_id: String!
-    content: String!
-    created_at: Date
-    updated_at: Date
-    removed_at: Date
-    post: Post!
-    user: User!
+  id: String!
+  post_id: String!
+  user_id: String!
+  content: String!
+  created_at: Date
+  updated_at: Date
+  removed_at: Date
+  post: Post!
+  user: User!
 }
 
 input MessageInput {
-    post_id: String!
-    user_id: String!
-    content: String!
+  post_id: String!
+  user_id: String!
+  content: String!
 }
 
 input MessageUpdateInput {
-    content: String
+  content: String
 }
 
 type Query {
-    getMessageById(id: String!): Message!
-    getAllMessages: [Message!]!
+  getMessageById(id: String!): Message!
+  getAllMessages: [Message!]!
 }
 
-type Mutation{
-    createMessage(input: MessageInput!): Message!
-    updateMessage(id: ID!, input: MessageUpdateInput!): Message!
-    deleteMessage(id: ID!): Boolean!
+type Mutation {
+  createMessage(input: MessageInput!): Message!
+  updateMessage(id: ID!, input: MessageUpdateInput!): Message!
+  deleteMessage(id: ID!): Boolean!
 }

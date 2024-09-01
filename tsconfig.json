@@ -25,5 +25,11 @@
       "@graphql/*": ["graphql/modules/*"]
     }
   },
-  "include": ["src//*", "tests//*", "src/app/graphql", "src/infra/db", "src/infra/database/config"]
+  "include": [
+    "src//*",
+    "tests//*",
+    "src/app/graphql",
+    "src/infra/db",
+    "src/infra/database/config"
+  ]
 }

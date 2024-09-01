@@ -1,25 +1,25 @@
 type Follower {
-    id: String!
-    user_follow: String!
-    user_followed: String!
-    created_at: Date
-    updated_at: Date
-    removed_at: Date
-    follower: User!
-    followed: User!
+  id: String!
+  user_follow: String!
+  user_followed: String!
+  created_at: Date
+  updated_at: Date
+  removed_at: Date
+  follower: User!
+  followed: User!
 }
 
 input FollowerInput {
-    user_follow: String!
-    user_followed: String!
+  user_follow: String!
+  user_followed: String!
 }
 
 type Query {
-    getFollowerById(id: String!): Follower
-    getAllFollowers: [Follower!]!
+  getFollowerById(id: String!): Follower
+  getAllFollowers: [Follower!]!
 }
 
 type Mutation {
-    followUser(input: FollowerInput!): Follower!
-    unfollowUser(id: String!): Boolean!
+  followUser(input: FollowerInput!): Follower!
+  unfollowUser(id: String!): Boolean!
 }
