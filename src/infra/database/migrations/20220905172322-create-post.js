@@ -1,50 +1,50 @@
 'use strict';
+
 module.exports = {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('post', {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.createTable('posts', {
       id: {
+        type: Sequelize.STRING,
+        defaultValue: Sequelize.UUID,
         allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
+        primaryKey: true
       },
-      user_id:{
-        type: Sequelize.INTEGER,
+      user_id: {
+        type: Sequelize.STRING,
         allowNull: false,
         references: {
-          model: 'user', key: 'id'
-        }
+          model: 'users',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       title: {
         type: Sequelize.STRING,
-        allowNull: false
-      },
-      description: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      active: {
-        type: Sequelize.BOOLEAN,
         allowNull: false,
-        defaultValue: true
+      },
+      content: {
+        type: Sequelize.TEXT,
+        allowNull: false,
       },
       created_at: {
         type: Sequelize.DATE,
-        defaultValue: new Date(),
-        allowNull: true
+        allowNull: true,
+        defaultValue: Sequelize.NOW
       },
       updated_at: {
         type: Sequelize.DATE,
-        defaultValue: new Date(),
-        allowNull: true
+        allowNull: true,
+        defaultValue: Sequelize.NOW
       },
       removed_at: {
         type: Sequelize.DATE,
-        allowNull: true
+        allowNull: true,
       }
     });
   },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('post');
+
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.dropTable('posts');
   }
 };
