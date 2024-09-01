@@ -20,10 +20,10 @@
     "typeRoots": ["node_modules/@types", "./src/@types"],
     "baseUrl": ".",
     "paths": {
-      "@config/*": ["src/config/*"],
+      "@config/*": ["src/infra/database/config/*"],
       "@db/*": ["src/infra/db/*"],
       "@graphql/*": ["graphql/modules/*"]
     }
   },
-  "include": ["src//*", "tests//*", "src/app/graphql", "src/infra/db"]
+  "include": ["src//*", "tests//*", "src/app/graphql", "src/infra/db", "src/infra/database/config"]
 }
