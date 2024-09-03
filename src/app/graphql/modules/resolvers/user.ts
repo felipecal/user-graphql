@@ -1,15 +1,17 @@
 import UserModel from "../../../../infra/database/models/Users";
 import PostModel from "../../../../infra/database/models/Posts";
+import { Context } from "apollo-server-core";
+import { GraphQLResolveInfo } from "graphql";
 
 export default {
   Query: {
-    getUserById: async (_parent, { id }, _context, _info) => {
+    getUserById: async (_parent, { id }, _context: Context, _info: GraphQLResolveInfo) => {
       const user = await UserModel.findByPk(id, {
         include: [{ model: PostModel, as: "user_posts" }],
       });
       return user;
     },
-    getAllUsers: async (_parent, { active }, _context, _info) => {
+    getAllUsers: async (_parent, { active }, _context: Context, _info: GraphQLResolveInfo) => {
       const ListUser = await UserModel.findAll({
         where: {
           active: !!active,
@@ -21,7 +23,7 @@ export default {
     },
   },
   Mutation: {
-    createUser: async (_parent, { input }, _context, _info) => {
+    createUser: async (_parent, { input }, _context: Context, _info: GraphQLResolveInfo) => {
       const user = await UserModel.create({
         full_name: input.full_name,
         nick_name: input.nick_name,
@@ -32,7 +34,7 @@ export default {
       });
       return user;
     },
-    updateUser: async (_parent, { id, input }, _context, _info) => {
+    updateUser: async (_parent, { id, input }, _context: Context, _info: GraphQLResolveInfo) => {
       const user = await UserModel.findByPk(id);
       if (!user) {
         throw new Error("User not found");
@@ -47,7 +49,7 @@ export default {
         return updateUser;
       }
     },
-    deleteUser: async (_parent, { id }, _context, _info) => {
+    deleteUser: async (_parent, { id }, _context: Context, _info: GraphQLResolveInfo) => {
       const user = await UserModel.findByPk(id);
       if (!user) {
         throw new Error("User not found");

@@ -2,10 +2,12 @@ import MessageModel from "../../../../infra/database/models/Messages";
 import PostModel from "../../../../infra/database/models/Posts";
 import UserModel from "../../../../infra/database/models/Users";
 import LikesModel from "../../../../infra/database/models/Likes";
+import { GraphQLResolveInfo } from "graphql";
+import { Context } from "apollo-server-core";
 
 export default {
   Query: {
-    getPostById: async (_parent, { id }, _context, _info) => {
+    getPostById: async (_parent, { id }, _context: Context, _info: GraphQLResolveInfo) => {
       const post = await PostModel.findByPk(id, {
         include: [
           { model: UserModel, as: "user" },
@@ -15,7 +17,7 @@ export default {
       });
       return post;
     },
-    getAllPosts: async (_parent, _args, _context, _info) => {
+    getAllPosts: async (_parent, _args, _context: Context, _info: GraphQLResolveInfo) => {
       const posts = await PostModel.findAll({
         include: [
           { model: UserModel, as: "user" },
@@ -28,7 +30,7 @@ export default {
     },
   },
   Mutation: {
-    createPost: async (_parent, { input }, _context, _info) => {
+    createPost: async (_parent, { input }, _context: Context, _info: GraphQLResolveInfo) => {
       const post = await PostModel.create({
         user_id: input.user_id,
         title: input.title,
@@ -37,7 +39,7 @@ export default {
       });
       return post;
     },
-    updatePost: async (_parent, { id, input }, _context, _info) => {
+    updatePost: async (_parent, { id, input }, _context: Context, _info: GraphQLResolveInfo) => {
       const post = await PostModel.findByPk(id);
       if (!post) {
         throw new Error("Post not found");
@@ -46,7 +48,7 @@ export default {
         return updatedPost;
       }
     },
-    deletePost: async (_parent, { id }, _context, _info) => {
+    deletePost: async (_parent, { id }, _context: Context, _info: GraphQLResolveInfo) => {
       const post = await PostModel.findByPk(id);
       if (!post) {
         throw new Error("Post not found");
