@@ -1,51 +1,59 @@
-<h1 align="center">User-ts</h1>
+# 🔥 User Graphql 🔥
 
-<h2 align="center"> 
-	👾 Api em Typescript com GraphQL 👾
-</h2>
 
-# Tabela de conteúdos
+This is a simple api that has user, user posts, likes on a post and comments on a post
 
-<!--ts-->
+## Technologies and Libraries Used
 
-- [Sobre](#Sobre)
-  - Uma api de autenticação de cadastro de usuário em TypeScript, utilizando postgres como banco de dados e graphql como interface de interação
-- [Instalação](#instalacao)
-- [Como usar](#como-usar)
-  - [Pre Requisitos](#pre-requisitos)
-  - [Local files](#local-files)
-  - [Remote files](#remote-files)
-  - [Multiple files](#multiple-files)
-- [Tecnologias](#tecnologias)
-  - [Back-End](#back-end)
-    - JavaScript (NodejS)
-    - TypeScript
-  - [Framework](#framework)
-    - Express
-    - Apollo
-    - Graphql
-    - Pg
-    - Sequelize
+- TypeScript
+- Graphql
+- Docker Database
+- Sequelize - ORM
+- Docker - Conteinarization
 
-<!--te-->
+## Installation
 
-### Features
+1. Clone this repository to your development environment:
 
-# Clone este repositório
+```bash
+git clone https://github.com/felipecal/user-graphql
 
-$ git clone https://github.com/felipecal/User_ts.git
+cd user-graphql
+```
 
-# Acesse a pasta do projeto no terminal/cmd
-
-cd User_ts
-
-# Instale as dependências
-
-$ npm install
-
-## License
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <br>
 
-<p align="right">(<a href="#top">back to top</a>)</p>
+2. Install the dependencies:
+
+```bash
+npm install
+
+or
+
+yarn install
+```
+
+<br>
+
+3. Database
+
+- Copy .env_example, create the .env file with the code of .env_example and set the .env file. Now you can create your database and app in docker with command:
+
+```
+docker compose up --build -d
+```
+
+
+<br>
+
+4. If you want to run the application in your local, comment the part of docker-compose that contains "web", line 3 until line 20 and run docker-compose again and start the applicaation with:
+
+```bash
+npm start
+
+or
+
+yarn start
+
+```
+
