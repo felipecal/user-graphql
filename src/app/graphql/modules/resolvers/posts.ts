@@ -7,7 +7,12 @@ import { Context } from "apollo-server-core";
 
 export default {
   Query: {
-    getPostById: async (_parent, { id }, _context: Context, _info: GraphQLResolveInfo) => {
+    getPostById: async (
+      _parent,
+      { id },
+      _context: Context,
+      _info: GraphQLResolveInfo,
+    ) => {
       const post = await PostModel.findByPk(id, {
         include: [
           { model: UserModel, as: "user" },
@@ -17,7 +22,12 @@ export default {
       });
       return post;
     },
-    getAllPosts: async (_parent, _args, _context: Context, _info: GraphQLResolveInfo) => {
+    getAllPosts: async (
+      _parent,
+      _args,
+      _context: Context,
+      _info: GraphQLResolveInfo,
+    ) => {
       const posts = await PostModel.findAll({
         include: [
           { model: UserModel, as: "user" },
@@ -30,7 +40,12 @@ export default {
     },
   },
   Mutation: {
-    createPost: async (_parent, { input }, _context: Context, _info: GraphQLResolveInfo) => {
+    createPost: async (
+      _parent,
+      { input },
+      _context: Context,
+      _info: GraphQLResolveInfo,
+    ) => {
       const post = await PostModel.create({
         user_id: input.user_id,
         title: input.title,
@@ -39,7 +54,12 @@ export default {
       });
       return post;
     },
-    updatePost: async (_parent, { id, input }, _context: Context, _info: GraphQLResolveInfo) => {
+    updatePost: async (
+      _parent,
+      { id, input },
+      _context: Context,
+      _info: GraphQLResolveInfo,
+    ) => {
       const post = await PostModel.findByPk(id);
       if (!post) {
         throw new Error("Post not found");
@@ -48,7 +68,12 @@ export default {
         return updatedPost;
       }
     },
-    deletePost: async (_parent, { id }, _context: Context, _info: GraphQLResolveInfo) => {
+    deletePost: async (
+      _parent,
+      { id },
+      _context: Context,
+      _info: GraphQLResolveInfo,
+    ) => {
       const post = await PostModel.findByPk(id);
       if (!post) {
         throw new Error("Post not found");
