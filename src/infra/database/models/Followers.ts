@@ -1,7 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "./index";
 import UserModel from "./Users";
-import PostModel from "./Posts";
 
 class FollowersModel extends Model {}
 
