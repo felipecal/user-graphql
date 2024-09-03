@@ -33,9 +33,6 @@ export default {
       return user;
     },
     updateUser: async (_parent, { id, input }, _context, _info) => {
-      console.log("id que recebi", id);
-      console.log("input que recebi", input);
-
       const user = await UserModel.findByPk(id);
       if (!user) {
         throw new Error("User not found");
